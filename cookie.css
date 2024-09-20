@@ -1,32 +1,74 @@
 * {
     font-family: "Matemasie", sans-serif;
-  font-weight: 600;
-user-select: none;}
+    font-weight: 600;
+    user-select: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-  
 body {
-    font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
     background-color: #ffd000;
+    text-align: center;
 }
 
-h1{
-    font-size: 40px;
-}
 .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+}
+
+.auto-clickers, .upgrades {
+    background-color: #f1f1f1;
+    border-radius: 15px;
+    padding: 20px;
+    width: 250px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.auto-clickers h2, .upgrades h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.auto-clicker-item, .upgrade-item {
+    background-color: #ddd;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 18px;
+    
+}
+
+#cookie-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     text-align: center;
+    background-color: #deb812;
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 #cookie-container {
     margin: 20px 0;
+    background-color: #eec610;
+    border-radius: 50%;
+    padding: 20px;
 }
 
 #cookie {
-    width: 250px;
+    width: 200px;
     cursor: pointer;
     transition: transform 0.2s ease-in-out;
 }
@@ -38,17 +80,20 @@ h1{
 #score-container {
     font-size: 28px;
     margin-bottom: 20px;
+    font-weight: bold;
 }
-#upgrade-button {
-    padding: 10px 20px;
-    font-size: 22px;
-    background-color: #ffffff;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    position: absolute;
-    top: 650px;}
 
-#upgrade-button:hover {
-    background-color: #ff9900;
+#progress-btn {
+    margin-top: 20px;
+    padding: 10px 30px;
+    background-color: #ddd;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.2s ease;
+}
+
+#progress-btn:hover {
+    background-color: #ccc;
 }
