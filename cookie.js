@@ -1,49 +1,27 @@
-class CookieGame {
-    constructor() {
-        this.cookieCount = 0;
-        this.upgradeMultiplier = 1;
-        this.upgradeCount = 0;
-
-        // Select DOM elements
-        this.cookie = document.getElementById('cookie');
-        this.cookieCountDisplay = document.getElementById('cookie-count');
-        this.upgradeButton = document.getElementById('upgrade-button');
-        this.upgradeCountDisplay = document.getElementById('upgrade-count');
-
-        // Bind events
-        this.initEventListeners();
+class clicker {
+    
+    constructor(start){
+        this.count=start;
+        this.displayCount();
     }
 
-    // Methode om event listeners te initialiseren
-    initEventListeners() {
-        this.cookie.addEventListener('click', () => this.incrementCookies());
-        this.upgradeButton.addEventListener('click', () => this.purchaseUpgrade());
+    click(){
+        this.count++;
+        this.displayCount();
     }
-
-    // Methode om cookies te verhogen
-    incrementCookies() {
-        this.cookieCount += this.upgradeMultiplier;
-        this.updateDisplay();
-    }
-
-    // Methode om een upgrade te kopen
-    purchaseUpgrade() {
-        if (this.cookieCount >= 20) {
-            this.cookieCount -= 20;
-            this.upgradeMultiplier *= 2;
-            this.upgradeCount++;
-            this.updateDisplay();
-        } else {
-            alert("You need at least 20 cookies to buy an upgrade!");
-        }
-    }
-
-    // Methode om de weergave van de cookie-telling en upgrade te updaten
-    updateDisplay() {
-        this.cookieCountDisplay.textContent = this.cookieCount;
-        this.upgradeCountDisplay.textContent = this.upgradeCount;
+    displayCount() {
+        const cookieCountElement = document.getElementById('cookie-count');
+        cookieCountElement.textContent = this.count;
     }
 }
 
-// Initieer het spel
-const game = new CookieGame();
+let clicker1 = new clicker(0);
+
+// Attach click event to the cookie image
+const cookie = document.getElementById('cookie');
+cookie.addEventListener('click', () => {
+    clicker1.click(); // Call the click method each time the cookie is clicked
+});
+
+
+
