@@ -37,6 +37,7 @@ body {
 .auto-clickers h2, .upgrades h2 {
     font-size: 24px;
     margin-bottom: 20px;
+    
 }
 
 .auto-clicker-item, .upgrade-item {
@@ -45,8 +46,20 @@ body {
     padding: 15px;
     border-radius: 10px;
     font-size: 18px;
-    
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    border: none;
 }
+
+.auto-clicker-item:hover, .upgrade-item:hover {
+    background-color: #ccc;
+    transform: translateY(-3px);
+}
+
+.auto-clicker-item:active, .upgrade-item:active {
+    transform: scale(0.95);
+}
+
 
 #cookie-section {
     display: flex;
