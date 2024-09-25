@@ -12,17 +12,17 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 0;
-    background-color: #ffd000;
+    background-color: #eec610;
     text-align: center;
 }
 
 .container {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    max-width: 1200px;
+    max-width: 1000px;
     padding: 20px;
 }
 
@@ -35,9 +35,7 @@ body {
 }
 
 .auto-clickers h2, .upgrades h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
-    
+    font-size: 24px;    
 }
 
 .auto-clicker-item, .upgrade-item {
@@ -63,11 +61,6 @@ body {
 
 
 #cookie-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
     background-color: #deb812;
     border-radius: 15px;
     padding: 40px;
@@ -96,18 +89,12 @@ body {
     margin-bottom: 20px;
     font-weight: bold;
 }
+@media only screen and (max-width: 431px) and (min-width: 430px) {
+    .container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
 
-#progress-btn {
-    margin-top: 20px;
-    padding: 10px 30px;
-    background-color: #ddd;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 18px;
-    transition: background-color 0.2s ease;
-}
-
-#progress-btn:hover {
-    background-color: #ccc;
 }

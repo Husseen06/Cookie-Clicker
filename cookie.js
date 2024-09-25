@@ -20,8 +20,12 @@ let clicker1 = new clicker(0);
 // Attach click event to the cookie image
 const cookie = document.getElementById('cookie');
 cookie.addEventListener('click', () => {
-    clicker1.click(); // Call the click method each time the cookie is clicked
-});
+    clicker1.click();
+})
+class upgrades {
+
+    
+}
 
 
 
