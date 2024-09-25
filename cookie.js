@@ -1,11 +1,11 @@
 class clicker {
-    
-    constructor(start){
-        this.count=start;
+
+    constructor(start) {
+        this.count = start;
         this.displayCount();
     }
 
-    click(){
+    click() {
         this.count++;
         this.displayCount();
     }
@@ -17,15 +17,11 @@ class clicker {
 
 let clicker1 = new clicker(0);
 
-// Attach click event to the cookie image
 const cookie = document.getElementById('cookie');
 cookie.addEventListener('click', () => {
     clicker1.click();
 })
 class upgrades {
 
-    
+
 }
-
-
-
