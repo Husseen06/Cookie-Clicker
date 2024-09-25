@@ -27,7 +27,7 @@ body {
 }
 
 .auto-clickers, .upgrades {
-    background-color: #f1f1f1;
+    background-color:#deb812;
     border-radius: 15px;
     padding: 20px;
     width: 250px;
@@ -41,7 +41,7 @@ body {
 }
 
 .auto-clicker-item, .upgrade-item {
-    background-color: #ddd;
+    background-color: #ffd000;
     margin: 10px 0;
     padding: 15px;
     border-radius: 10px;
@@ -49,6 +49,7 @@ body {
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
     border: none;
+
 }
 
 .auto-clicker-item:hover, .upgrade-item:hover {
