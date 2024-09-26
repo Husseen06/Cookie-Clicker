@@ -5,6 +5,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    color: #4E342E;
 }
 
 body {
@@ -12,7 +13,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #eec610;
+    background-color: #f3d294;
     text-align: center;
 }
 
@@ -27,7 +28,7 @@ body {
 }
 
 .auto-clickers, .upgrades {
-    background-color:#eec610;
+    background-color:#7f5945f5;
     border-radius: 15px;
     padding: 20px;
     width: 250px;
@@ -40,7 +41,7 @@ body {
 }
 
 .auto-clicker-item, .upgrade-item {
-    background-color: #9e64259f;
+    background-color: #fee6bab4;
     margin: 10px 0;
     padding: 15px;
     border-radius: 10px;
@@ -62,7 +63,7 @@ body {
 
 
 #cookie-section {
-    background-color: #deb812;
+    background-color: #7f5945f5;
     border-radius: 15px;
     padding: 40px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
@@ -70,7 +71,7 @@ body {
 
 #cookie-container {
     margin: 20px 0;
-    background-color: #eec610;
+    background-color: #fee6bab4;
     border-radius: 50%;
     padding: 20px;
 }
