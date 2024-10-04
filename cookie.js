@@ -35,7 +35,7 @@ cookie.addEventListener('click', () => {
 });
 
 const doubleClickerButton = document.querySelector('.upgrade-item:nth-child(1)');
-bleClickerButton = document.querySelector('.upgrade-item:nth-child(2)');
+doubleClickerButton = document.querySelector('.upgrade-item:nth-child(2)');
 const tripleClickerButton = document.querySelector('.upgrade-item:nth-child(3)');
 const quadrupleClickerButton = document.querySelector('.upgrade-item:nth-child(4)');
 
