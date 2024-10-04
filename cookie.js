@@ -15,7 +15,7 @@ class clicker {
     }
 }
 
-let clicker1 = new clicker(0);
+let clicker1 = new clicker(0);  
 
 const cookie = document.getElementById('cookie');
 cookie.addEventListener('click', () => {
