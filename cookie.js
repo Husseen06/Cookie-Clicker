@@ -21,8 +21,8 @@ class Clicker {
             this.cookiesPerClick *= multiplier;
             buttonElement.style.display = 'none';
             this.displayCount();
-        } else {
-            alert("Not enough cookies!");
+        } else {    
+                alert("Not enough cookies!");
         }
     }
 }
@@ -34,7 +34,8 @@ cookie.addEventListener('click', () => {
     clicker1.click();
 });
 
-const doubleClickerButton = document.querySelector('.upgrade-item:nth-child(2)');
+const doubleClickerButton = document.querySelector('.upgrade-item:nth-child(1)');
+bleClickerButton = document.querySelector('.upgrade-item:nth-child(2)');
 const tripleClickerButton = document.querySelector('.upgrade-item:nth-child(3)');
 const quadrupleClickerButton = document.querySelector('.upgrade-item:nth-child(4)');
 
