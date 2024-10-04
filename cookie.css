@@ -41,7 +41,11 @@ body {
 }
 
 .auto-clicker-item, .upgrade-item {
+<<<<<<< Updated upstream
     background-color: #fee6bab4;
+=======
+    background-color: white;
+>>>>>>> Stashed changes
     margin: 10px 0;
     padding: 15px;
     border-radius: 10px;
