@@ -11,6 +11,12 @@ class UpgradeManager {
     handleUpgrade() {
         this.activeUpgrades++;
         this.updateProgress();
+
+        // Unlock new upgrades and reset progress bar if the first set of upgrades are complete
+        if (this.activeUpgrades === 3) {
+            this.unlockNewUpgrades();
+            this.resetProgressBar(); // Reset progress bar to 0%
+        }
     }
 
     // Update the progress bar and active upgrades display
@@ -21,18 +27,30 @@ class UpgradeManager {
         const progressPercentage = (this.activeUpgrades / this.totalUpgrades) * 100;
         this.progressBar.style.width = Math.min(progressPercentage, 100) + '%'; // Ensure it doesn't exceed 100%
     }
+
+    // Unlock the new upgrades
+    unlockNewUpgrades() {
+        const newUpgrades = document.querySelectorAll('.hidden');
+        newUpgrades.forEach(button => {
+            button.classList.remove('hidden');
+        });
+    }
+
+    // Reset the progress bar but keep the active upgrades unchanged
+    resetProgressBar() {
+        this.totalUpgrades += 3; // Update total upgrades to include the new ones
+        this.progressBar.style.width = '0%'; // Set progress bar back to 0
+    }
 }
 
-// Update the purchaseUpgrade function to call handleUpgrade after successful purchase
 class Clicker {
     constructor(start) {
         this.count = start;
         this.cookiesPerClick = 1;
-        this.autoClickers = 0;
         this.autoClickRate = 0;
         this.displayCount();
         this.startAutoClickers();
-        this.upgradeManager = new UpgradeManager(3); // Set the UpgradeManager instance
+        this.upgradeManager = new UpgradeManager(3); // Total initial upgrades = 3
     }
 
     click() {
@@ -54,7 +72,7 @@ class Clicker {
             
             // Only handle upgrade progress after successful purchase
             this.upgradeManager.handleUpgrade();
-        } else {    
+        } else {
             alert("Not enough cookies!");
         }
     }
@@ -80,6 +98,7 @@ class Clicker {
     }
 }
 
+// Create a Clicker instance
 let clicker1 = new Clicker(0);
 
 // Cookie clicker
@@ -93,6 +112,11 @@ const doubleClickerButton = document.querySelector('.upgrade-item:nth-child(2)')
 const tripleClickerButton = document.querySelector('.upgrade-item:nth-child(3)');
 const quadrupleClickerButton = document.querySelector('.upgrade-item:nth-child(4)');
 
+// New Upgrades
+const quintupleClickerButton = document.getElementById('quintuple-clicker');
+const sextupleClickerButton = document.getElementById('sextuple-clicker');
+const septupleClickerButton = document.getElementById('septuple-clicker');
+
 doubleClickerButton.addEventListener('click', () => {
     clicker1.purchaseUpgrade(50, 2, doubleClickerButton);
 });
@@ -103,6 +127,19 @@ tripleClickerButton.addEventListener('click', () => {
 
 quadrupleClickerButton.addEventListener('click', () => {
     clicker1.purchaseUpgrade(750, 4, quadrupleClickerButton);
+});
+
+// Unlockable Upgrades (Initially hidden)
+quintupleClickerButton.addEventListener('click', () => {
+    clicker1.purchaseUpgrade(1500, 5, quintupleClickerButton);
+});
+
+sextupleClickerButton.addEventListener('click', () => {
+    clicker1.purchaseUpgrade(5000, 6, sextupleClickerButton);
+});
+
+septupleClickerButton.addEventListener('click', () => {
+    clicker1.purchaseUpgrade(12000, 7, septupleClickerButton);
 });
 
 // Auto-clickers
@@ -121,3 +158,5 @@ superClickerButton.addEventListener('click', () => {
 megaClickerButton.addEventListener('click', () => {
     clicker1.purchaseAutoClicker(10000, 1000, megaClickerButton); // 10 cookies per second
 });
+
+

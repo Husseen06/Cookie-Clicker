@@ -124,6 +124,10 @@ body {
     font-weight: bold;
 }
 
+.hidden{
+    display: none;
+}
+
 @media only screen and (max-width: 431px) and (min-width: 430px) {
     .container {
         display: flex;
