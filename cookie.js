@@ -1,3 +1,29 @@
+class UpgradeManager {
+    constructor(totalUpgrades) {
+        this.activeUpgrades = 0;
+        this.totalUpgrades = totalUpgrades;
+        this.upgradeButtons = document.querySelectorAll('.upgrade-item');
+        this.activeUpgradesSpan = document.getElementById('active-upgrades');
+        this.progressBar = document.querySelector('.progress');
+    }
+
+    // Increment active upgrades and update progress
+    handleUpgrade() {
+        this.activeUpgrades++;
+        this.updateProgress();
+    }
+
+    // Update the progress bar and active upgrades display
+    updateProgress() {
+        this.activeUpgradesSpan.textContent = this.activeUpgrades;
+
+        // Calculate progress percentage based on active upgrades
+        const progressPercentage = (this.activeUpgrades / this.totalUpgrades) * 100;
+        this.progressBar.style.width = Math.min(progressPercentage, 100) + '%'; // Ensure it doesn't exceed 100%
+    }
+}
+
+// Update the purchaseUpgrade function to call handleUpgrade after successful purchase
 class Clicker {
     constructor(start) {
         this.count = start;
@@ -6,6 +32,7 @@ class Clicker {
         this.autoClickRate = 0;
         this.displayCount();
         this.startAutoClickers();
+        this.upgradeManager = new UpgradeManager(3); // Set the UpgradeManager instance
     }
 
     click() {
@@ -24,6 +51,9 @@ class Clicker {
             this.cookiesPerClick *= multiplier;
             buttonElement.style.display = 'none';
             this.displayCount();
+            
+            // Only handle upgrade progress after successful purchase
+            this.upgradeManager.handleUpgrade();
         } else {    
             alert("Not enough cookies!");
         }

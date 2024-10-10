@@ -35,6 +35,7 @@ body {
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
     position: relative;
     top: -50px;
+    left: 100px;
 }
 
 
@@ -71,6 +72,8 @@ body {
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
     position: relative;
     top: -50px;
+    left: 100px
+    ;
 }
 
 #cookie-container {
@@ -95,6 +98,32 @@ body {
     margin-bottom: 20px;
     font-weight: bold;
 }
+.progress-bar-container {
+    text-align: center;
+    position: relative;
+    left: -150px;
+    top: 190px;
+}
+
+.progress-bar {
+    width: 100%;
+    background-color: #ddd;
+    border-radius: 20px;
+    height: 20px;
+    overflow: hidden;
+}
+
+.progress {
+    background-color: #4caf50;
+    height: 100%;
+    width: 0;
+    transition: width 0.3s ease;
+}
+
+#active-upgrades {
+    font-weight: bold;
+}
+
 @media only screen and (max-width: 431px) and (min-width: 430px) {
     .container {
         display: flex;
