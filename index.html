@@ -11,21 +11,29 @@
 </head>
 <body>
     <div class="container">
-        <div class="auto-clickers"> 	
+        <div class="auto-clickers">
             <h2>Auto Clickers</h2>
             <button class="auto-clicker-item">Auto Clicker 750 Cookies</button>
             <button class="auto-clicker-item">Super Clicker 5000 Cookies</button>
             <button class="auto-clicker-item">Mega Clicker 10000 Cookies</button>
+
+            <div class="progress-bar-container">
+                <h2>Active Auto Clickers</h2>
+                <div class="progress-bar">
+                    <div class="progress" id="auto-clicker-progress"></div>
+                </div>
+                <p>Auto Clickers Actief: <span id="active-auto-clickers">0</span></p>
+            </div>
         </div>
-        
+
         <div id="cookie-section">
             <div id="cookie-container">
                 <img src="koekje.png" alt="Cookie" id="cookie" draggable="false">
             </div>
             <p>Cookies: <span id="cookie-count">0</span></p>
         </div>
-        
-        <div class="upgrades">  
+
+        <div class="upgrades">
             <h2>Upgrades</h2>
             <button class="upgrade-item">Double Clicker 50 Cookies</button>
             <button class="upgrade-item">Triple Clicker 250 Cookies</button>
@@ -33,17 +41,17 @@
             <button class="upgrade-item hidden" id="quintuple-clicker">Quintuple Clicker 1500 Cookies</button>
             <button class="upgrade-item hidden" id="sextuple-clicker">Sextuple Clicker 5000 Cookies</button>
             <button class="upgrade-item hidden" id="septuple-clicker">Septuple Clicker 12000 Cookies</button>
+
+            <div class="progress-bar-container">
+                <h2>Active Upgrades</h2>
+                <div class="progress-bar">
+                    <div class="progress" id="upgrade-progress"></div>
+                </div>
+                <p>Upgrades Actief: <span id="active-upgrades">0</span></p>
+            </div>
         </div>
-</div>
-<div class="progress-bar-container">
-    <h2>Active Upgrades</h2>
-    <div class="progress-bar">
-        <div class="progress"></div>
     </div>
-    <p>Upgrades actief: <span id="active-upgrades">0</span></p>
-</div>
-    
+
     <script src="cookie.js"></script>
 </body>
 </html>
-

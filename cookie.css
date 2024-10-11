@@ -34,13 +34,6 @@ body {
     width: 250px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
     position: relative;
-    top: -50px;
-    left: 100px;
-}
-
-
-.auto-clickers h2, .upgrades h2 {
-    font-size: 24px;    
 }
 
 .auto-clicker-item, .upgrade-item {
@@ -52,7 +45,6 @@ body {
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
     border: none;
-
 }
 
 .auto-clicker-item:hover, .upgrade-item:hover {
@@ -65,44 +57,9 @@ body {
 }
 
 
-#cookie-section {
-    background-color: #7f5945f5;
-    border-radius: 15px;
-    padding: 40px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
-    position: relative;
-    top: -50px;
-    left: 100px
-    ;
-}
-
-#cookie-container {
-    margin: 20px 0;
-    background-color: #fee6bab4;
-    border-radius: 50%;
-    padding: 20px;
-}
-
-#cookie {
-    width: 200px;
-    cursor: pointer;
-    transition: transform 0.2s ease-in-out;
-}
-
-#cookie:active {
-    transform: scale(0.9);
-}
-
-#score-container {
-    font-size: 28px;
-    margin-bottom: 20px;
-    font-weight: bold;
-}
 .progress-bar-container {
     text-align: center;
-    position: relative;
-    left: -150px;
-    top: 190px;
+    margin-top: 20px;
 }
 
 .progress-bar {
@@ -111,6 +68,7 @@ body {
     border-radius: 20px;
     height: 20px;
     overflow: hidden;
+    margin: 10px 0;
 }
 
 .progress {
@@ -120,7 +78,7 @@ body {
     transition: width 0.3s ease;
 }
 
-#active-upgrades {
+#active-upgrades, #active-auto-clickers {
     font-weight: bold;
 }
 
@@ -128,12 +86,39 @@ body {
     display: none;
 }
 
-@media only screen and (max-width: 431px) and (min-width: 430px) {
-    .container {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-    }
+#cookie {
+    width: 20vw; 
+    height: auto; 
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
 
+#cookie:active {
+    transform: scale(0.95);
+}
+
+#cookie-section {
+    background-color: #7f5945f5;
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    position: relative;
+    top: 0px;
+}
+ 
+#cookie-container {
+    margin: 20px 0;
+    background-color: #fee6bab4;
+    border-radius: 50%;
+    padding: 20px;
+}
+ 
+#cookie {
+    width: 200px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+ 
+#cookie:active {
+    transform: scale(0.9);
 }
