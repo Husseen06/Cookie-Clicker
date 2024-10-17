@@ -1,7 +1,6 @@
 class UpgradeManager {
-    constructor(totalUpgrades) {
+    constructor() {
         this.activeUpgrades = 0;
-        this.totalUpgrades = totalUpgrades;
         this.activeUpgradesSpan = document.getElementById('active-upgrades');
         this.progressBar = document.getElementById('upgrade-progress');
     }
@@ -10,110 +9,75 @@ class UpgradeManager {
         this.activeUpgrades++;
         this.updateProgress();
 
+        // Unlock new upgrades and reset progress bar after every 3 upgrades
         if (this.activeUpgrades % 3 === 0) {
-            this.unlockNewUpgrades();
+            this.unlockAllNewUpgrades();
             this.resetProgressBar();
         }
     }
 
     updateProgress() {
         this.activeUpgradesSpan.textContent = this.activeUpgrades;
-        const upgradesInCurrentRound = this.activeUpgrades % 3; // Only the upgrades in the current round
+        const upgradesInCurrentRound = this.activeUpgrades % 3;
         const progressPercentage = (upgradesInCurrentRound / 3) * 100;
         this.progressBar.style.width = Math.min(progressPercentage, 100) + '%';
     }
 
-    unlockNewUpgrades() {
-        const newUpgrades = document.querySelectorAll('.hidden');
-        newUpgrades.forEach(button => {
-            button.classList.remove('hidden');
+    unlockAllNewUpgrades() {
+        const hiddenUpgrades = document.querySelectorAll('.upgrade-item.hidden');
+        hiddenUpgrades.forEach((upgrade, index) => {
+            // Show the first 3 hidden upgrades in the list
+            if (index < 3) {
+                upgrade.classList.remove('hidden');
+            }
         });
     }
 
     resetProgressBar() {
-        // Resets only the progress bar but keeps the total active upgrades count
         this.progressBar.style.width = '0%';
     }
 }
 
 class AutoClickerManager {
-    constructor(totalAutoClickers) {
+    constructor() {
         this.activeAutoClickers = 0;
-        this.totalAutoClickers = totalAutoClickers;
         this.activeAutoClickersSpan = document.getElementById('active-auto-clickers');
-        this.autoClickerProgressBar = document.getElementById('auto-clicker-progress');
+        this.progressBar = document.getElementById('auto-clicker-progress');
     }
 
     handleAutoClicker() {
         this.activeAutoClickers++;
         this.updateProgress();
+
+        // Unlock new auto-clickers and reset progress bar after every 3 auto-clickers purchased
+        if (this.activeAutoClickers % 3 === 0) {
+            this.unlockAllNewAutoClickers();
+            this.resetProgressBar();
+        }
     }
 
     updateProgress() {
         this.activeAutoClickersSpan.textContent = this.activeAutoClickers;
-        const progressPercentage = (this.activeAutoClickers / this.totalAutoClickers) * 100;
-        this.autoClickerProgressBar.style.width = Math.min(progressPercentage, 100) + '%';
-    }
-}
-
-class Clicker {
-    constructor(start) {
-        this.count = start;
-        this.cookiesPerClick = 1;
-        this.autoClickRate = 0;
-        this.displayCount();
-        this.startAutoClickers();
-        this.upgradeManager = new UpgradeManager(3); // Initializes UpgradeManager
-        this.autoClickerManager = new AutoClickerManager(3); // Initializes AutoClickerManager
+        const progressPercentage = (this.activeAutoClickers % 3 / 3) * 100;
+        this.progressBar.style.width = Math.min(progressPercentage, 100) + '%';
     }
 
-    click() {
-        this.count += this.cookiesPerClick;
-        this.displayCount();
-    }
-
-    displayCount() {
-        const cookieCountElement = document.getElementById('cookie-count');
-        cookieCountElement.textContent = this.count;
-    }
-
-    purchaseUpgrade(cost, multiplier, buttonElement) {
-        if (this.count >= cost) {
-            this.count -= cost;
-            this.cookiesPerClick *= multiplier;
-            buttonElement.style.display = 'none';
-            this.displayCount();
-
-            this.upgradeManager.handleUpgrade(); // Updates progress after each upgrade
-        } else {
-            alert("Not enough cookies!");
-        }
-    }
-
-    purchaseAutoClicker(cost, rate, buttonElement) {
-        if (this.count >= cost) {
-            this.count -= cost;
-            this.autoClickRate += rate;
-            buttonElement.style.display = 'none';
-            this.displayCount();
-
-            this.autoClickerManager.handleAutoClicker(); // Updates progress after each auto-clicker purchase
-        } else {
-            alert("Not enough cookies!");
-        }
-    }
-
-    startAutoClickers() {
-        setInterval(() => {
-            if (this.autoClickRate > 0) {
-                this.count += this.autoClickRate;
-                this.displayCount();
+    unlockAllNewAutoClickers() {
+        const hiddenAutoClickers = document.querySelectorAll('.auto-clicker-item.hidden');
+        hiddenAutoClickers.forEach((autoClicker, index) => {
+            // Show the first 3 hidden auto-clickers in the list
+            if (index < 3) {
+                autoClicker.classList.remove('hidden');
             }
-        }, 1000);
+        });
+    }
+
+    resetProgressBar() {
+        this.progressBar.style.width = '0%';
     }
 }
 
-// Initialize Clicker game
+// Initialize Clicker game and other managers
 let clicker1 = new Clicker(0);
 
 // Event listeners for cookie clicking
@@ -126,7 +90,6 @@ cookie.addEventListener('click', () => {
 const doubleClickerButton = document.querySelector('.upgrade-item:nth-child(2)');
 const tripleClickerButton = document.querySelector('.upgrade-item:nth-child(3)');
 const quadrupleClickerButton = document.querySelector('.upgrade-item:nth-child(4)');
-
 const quintupleClickerButton = document.getElementById('quintuple-clicker');
 const sextupleClickerButton = document.getElementById('sextuple-clicker');
 const septupleClickerButton = document.getElementById('septuple-clicker');
@@ -157,19 +120,33 @@ septupleClickerButton.addEventListener('click', () => {
 });
 
 // Auto-clicker buttons
-const autoClickerButton = document.querySelector('.auto-clicker-item:nth-child(1)');
-const superClickerButton = document.querySelector('.auto-clicker-item:nth-child(2)');
-const megaClickerButton = document.querySelector('.auto-clicker-item:nth-child(3)');
+const autoClickerButton = document.getElementById('auto-clicker');
+const superClickerButton = document.getElementById('super-clicker');
+const megaClickerButton = document.getElementById('mega-clicker');
+const rareClickerButton = document.getElementById('rare-clicker');
+const legendaryClickerButton = document.getElementById('legendary-clicker');
+const mythicalClickerButton = document.getElementById('mythical-clicker');
 
-// Event listeners for auto-clickers
 autoClickerButton.addEventListener('click', () => {
-    clicker1.purchaseAutoClicker(750, 5, autoClickerButton);
+    clicker1.purchaseAutoClicker(750, 1, autoClickerButton);
 });
 
 superClickerButton.addEventListener('click', () => {
-    clicker1.purchaseAutoClicker(5000, 200, superClickerButton);
+    clicker1.purchaseAutoClicker(5000, 5, superClickerButton);
 });
 
 megaClickerButton.addEventListener('click', () => {
-    clicker1.purchaseAutoClicker(10000, 1000, megaClickerButton);
+    clicker1.purchaseAutoClicker(10000, 10, megaClickerButton);
+});
+
+rareClickerButton.addEventListener('click', () => {
+    clicker1.purchaseAutoClicker(500000, 50, rareClickerButton);
+});
+
+legendaryClickerButton.addEventListener('click', () => {
+    clicker1.purchaseAutoClicker(2500000, 100, legendaryClickerButton);
+});
+
+mythicalClickerButton.addEventListener('click', () => {
+    clicker1.purchaseAutoClicker(6000000, 200, mythicalClickerButton);
 });
