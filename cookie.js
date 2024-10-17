@@ -15,39 +15,43 @@ class Clicker {
 
     displayCount() {
         const cookieCountElement = document.getElementById('cookie-count');
-        cookieCountElement.textContent = this.count;
+        if (cookieCountElement) {
+            cookieCountElement.textContent = this.count;
+        }
     }
 
     animateGainedCookies() {
         const floatingText = document.getElementById('floating-text');
-        floatingText.textContent = `+${this.cookiesPerClick}`;  // Update the gained cookie amount
-        floatingText.classList.remove('show');  // Reset the animation
+        if (floatingText) {
+            floatingText.textContent = `+${this.cookiesPerClick}`;  // Update the gained cookie amount
+            floatingText.classList.remove('show');  // Reset the animation
 
-        // Trigger reflow to restart the animation
-        void floatingText.offsetWidth;
-        
-        floatingText.classList.add('show');  // Start the animation again
+            // Trigger reflow to restart the animation
+            void floatingText.offsetWidth;
+
+            floatingText.classList.add('show');  // Start the animation again
+        }
     }
 
-    purchaseUpgrade(cost, multiplier, buttonElement) {
+    purchaseUpgrade(cost, multiplier, buttonElement, upgradeName) {
         if (this.count >= cost) {
             this.count -= cost;
             this.cookiesPerClick *= multiplier;
             buttonElement.style.display = 'none';  // Hide the upgrade button after purchase
             this.displayCount();
-            upgradeManager.handleUpgrade();  // Update progress for upgrades
+            upgradeManager.handleUpgrade(upgradeName);  // Pass the upgrade name
         } else {
             alert("Not enough cookies!");
         }
     }
 
-    purchaseAutoClicker(cost, rate, buttonElement) {
+    purchaseAutoClicker(cost, rate, buttonElement, autoClickerName) {
         if (this.count >= cost) {
             this.count -= cost;
             this.autoClickRate += rate;
             buttonElement.style.display = 'none';  // Hide the auto-clicker button after purchase
             this.displayCount();
-            autoClickerManager.handleAutoClicker();  // Update progress for auto-clickers
+            autoClickerManager.handleAutoClicker(autoClickerName);  // Update progress for auto-clickers
         } else {
             alert("Not enough cookies!");
         }
@@ -68,16 +72,22 @@ class UpgradeManager {
     constructor() {
         this.activeUpgrades = 0;
         this.activeUpgradesSpan = document.getElementById('active-upgrades');
-        this.progressBar = document.getElementById('upgrade-progress');
         this.activeUpgradesList = document.getElementById('active-upgrades-list');
+        this.activeUpgradesNames = []; // New list to store upgrade names
+        this.progressBar = document.getElementById('upgrade-progress');
     }
 
-    handleUpgrade() {
+    handleUpgrade(upgradeName) { // Pass the name of the upgrade
         this.activeUpgrades++;
+        this.activeUpgradesNames.push(upgradeName); // Store the upgrade name
         this.updateProgress();
-
-        // Unlock the next hidden upgrade immediately after each purchase
         this.unlockNextUpgrade();
+    }
+
+    handleAutoClicker(autoClickerName) { // Handle auto-clicker like an upgrade
+        this.activeUpgrades++;
+        this.activeUpgradesNames.push(autoClickerName);  // Add auto-clicker name to active upgrades
+        this.updateProgress();
     }
 
     updateProgress() {
@@ -85,22 +95,23 @@ class UpgradeManager {
         const upgradesInCurrentRound = this.activeUpgrades % 3;
         const progressPercentage = (upgradesInCurrentRound / 3) * 100;
         this.progressBar.style.width = Math.min(progressPercentage, 100) + '%';
-        this.updateActiveUpgradesDisplay();
-    }
 
-    unlockNextUpgrade() {
-        // Select hidden upgrades
-        const hiddenUpgrades = document.querySelectorAll('.upgrade-item.hidden');
-        if (hiddenUpgrades.length > 0) {
-            hiddenUpgrades[0].classList.remove('hidden');  // Reveal the next hidden upgrade
-        }
+        this.updateActiveUpgradesDisplay(); // Update the active upgrades display
     }
 
     updateActiveUpgradesDisplay() {
-        if (this.activeUpgrades === 0) {
+        if (this.activeUpgradesNames.length === 0) {
             this.activeUpgradesList.textContent = 'Active Upgrades: None';
         } else {
-            this.activeUpgradesList.textContent = 'Active Upgrades: ' + this.activeUpgrades;
+            // Show the names of all active upgrades and auto-clickers
+            this.activeUpgradesList.textContent = 'Active Upgrades: ' + this.activeUpgradesNames.join(', ');
+        }
+    }
+
+    unlockNextUpgrade() {
+        const hiddenUpgrades = document.querySelectorAll('.upgrade-item.hidden');
+        if (hiddenUpgrades.length > 0) {
+            hiddenUpgrades[0].classList.remove('hidden');
         }
     }
 
@@ -117,9 +128,12 @@ class AutoClickerManager {
         this.progressBar = document.getElementById('auto-clicker-progress');
     }
 
-    handleAutoClicker() {
+    handleAutoClicker(autoClickerName) {
         this.activeAutoClickers++;
         this.updateProgress();
+
+        // Notify the UpgradeManager to add this auto-clicker to the list of active upgrades
+        upgradeManager.handleAutoClicker(autoClickerName);
 
         // Unlock new auto-clickers starting from the fourth one
         this.unlockNextAutoClicker();
@@ -167,27 +181,27 @@ const septupleClickerButton = document.getElementById('septuple-clicker');
 
 // Event listeners for upgrades
 doubleClickerButton.addEventListener('click', () => {
-    clicker1.purchaseUpgrade(50, 2, doubleClickerButton);
+    clicker1.purchaseUpgrade(50, 2, doubleClickerButton, 'Double Clicker');
 });
 
 tripleClickerButton.addEventListener('click', () => {
-    clicker1.purchaseUpgrade(250, 3, tripleClickerButton);
+    clicker1.purchaseUpgrade(250, 3, tripleClickerButton, 'Triple Clicker');
 });
 
 quadrupleClickerButton.addEventListener('click', () => {
-    clicker1.purchaseUpgrade(750, 4, quadrupleClickerButton);
+    clicker1.purchaseUpgrade(750, 4, quadrupleClickerButton, 'Quadruple Clicker');
 });
 
 quintupleClickerButton.addEventListener('click', () => {
-    clicker1.purchaseUpgrade(1500, 5, quintupleClickerButton);
+    clicker1.purchaseUpgrade(1500, 5, quintupleClickerButton, 'Quintuple Clicker');
 });
 
 sextupleClickerButton.addEventListener('click', () => {
-    clicker1.purchaseUpgrade(5000, 6, sextupleClickerButton);
+    clicker1.purchaseUpgrade(5000, 6, sextupleClickerButton, 'Sextuple Clicker');
 });
 
 septupleClickerButton.addEventListener('click', () => {
-    clicker1.purchaseUpgrade(12000, 7, septupleClickerButton);
+    clicker1.purchaseUpgrade(12000, 7, septupleClickerButton, 'Septuple Clicker');
 });
 
 // Auto-clicker buttons
@@ -203,37 +217,37 @@ const godlyClickerButton = document.getElementById('godly-clicker'); // New auto
 
 // Event listeners for auto-clickers
 autoClickerButton.addEventListener('click', () => {
-    clicker1.purchaseAutoClicker(750, 1, autoClickerButton);
+    clicker1.purchaseAutoClicker(750, 1, autoClickerButton, 'Auto Clicker');
 });
 
 superClickerButton.addEventListener('click', () => {
-    clicker1.purchaseAutoClicker(5000, 10, superClickerButton);
+    clicker1.purchaseAutoClicker(5000, 10, superClickerButton, 'Super Clicker');
 });
 
 megaClickerButton.addEventListener('click', () => {
-    clicker1.purchaseAutoClicker(10000, 80, megaClickerButton);
+    clicker1.purchaseAutoClicker(10000, 80, megaClickerButton, 'Mega Clicker');
 });
 
 rareClickerButton.addEventListener('click', () => {
-    clicker1.purchaseAutoClicker(500000, 500, rareClickerButton);
+    clicker1.purchaseAutoClicker(500000, 500, rareClickerButton, 'Rare Clicker');
 });
 
 legendaryClickerButton.addEventListener('click', () => {
-    clicker1.purchaseAutoClicker(2500000, 1200, legendaryClickerButton);
+    clicker1.purchaseAutoClicker(2500000, 1200, legendaryClickerButton, 'Legendary Clicker');
 });
 
 mythicalClickerButton.addEventListener('click', () => {
-    clicker1.purchaseAutoClicker(6000000, 5000, mythicalClickerButton);
+    clicker1.purchaseAutoClicker(6000000, 5000, mythicalClickerButton, 'Mythical Clicker');
 });
 
 ultraClickerButton.addEventListener('click', () => {
-    clicker1.purchaseAutoClicker(10000000, 20000, ultraClickerButton); // New auto-clicker
+    clicker1.purchaseAutoClicker(10000000, 20000, ultraClickerButton, 'Ultra Clicker');
 });
 
 supremeClickerButton.addEventListener('click', () => {
-    clicker1.purchaseAutoClicker(25000000, 100000, supremeClickerButton); // New auto-clicker
+    clicker1.purchaseAutoClicker(25000000, 100000, supremeClickerButton, 'Supreme Clicker');
 });
 
 godlyClickerButton.addEventListener('click', () => {
-    clicker1.purchaseAutoClicker(50000000, 500000, godlyClickerButton); // New auto-clicker
+    clicker1.purchaseAutoClicker(50000000, 500000, godlyClickerButton, 'Godly Clicker');
 });
