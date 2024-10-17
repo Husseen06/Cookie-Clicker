@@ -1,3 +1,57 @@
+class Clicker {
+    constructor(start) {
+        this.count = start;
+        this.cookiesPerClick = 1;
+        this.autoClickRate = 0;
+        this.displayCount();
+        this.startAutoClickers();
+    }
+
+    click() {
+        this.count += this.cookiesPerClick;
+        this.displayCount();
+    }
+
+    displayCount() {
+        const cookieCountElement = document.getElementById('cookie-count');
+        cookieCountElement.textContent = this.count;
+    }
+
+    purchaseUpgrade(cost, multiplier, buttonElement) {
+        if (this.count >= cost) {
+            this.count -= cost;
+            this.cookiesPerClick *= multiplier;
+            buttonElement.style.display = 'none';  // Hide the upgrade button after purchase
+            this.displayCount();
+            upgradeManager.handleUpgrade();  // Update progress for upgrades
+        } else {
+            alert("Not enough cookies!");
+        }
+    }
+
+    purchaseAutoClicker(cost, rate, buttonElement) {
+        if (this.count >= cost) {
+            this.count -= cost;
+            this.autoClickRate += rate;
+            buttonElement.style.display = 'none';  // Hide the auto-clicker button after purchase
+            this.displayCount();
+            autoClickerManager.handleAutoClicker();  // Update progress for auto-clickers
+        } else {
+            alert("Not enough cookies!");
+        }
+    }
+
+    startAutoClickers() {
+        setInterval(() => {
+            if (this.autoClickRate > 0) {
+                this.count += this.autoClickRate;
+                this.displayCount();
+            }
+        }, 1000); // Adds cookies every second
+    }
+}
+
+// UpgradeManager to handle upgrades progress bar
 class UpgradeManager {
     constructor() {
         this.activeUpgrades = 0;
@@ -38,6 +92,8 @@ class UpgradeManager {
     }
 }
 
+// AutoClickerManager to handle auto-clicker progress bar
+// AutoClickerManager to handle auto-clicker progress bar
 class AutoClickerManager {
     constructor() {
         this.activeAutoClickers = 0;
@@ -49,11 +105,8 @@ class AutoClickerManager {
         this.activeAutoClickers++;
         this.updateProgress();
 
-        // Unlock new auto-clickers and reset progress bar after every 3 auto-clickers purchased
-        if (this.activeAutoClickers % 3 === 0) {
-            this.unlockAllNewAutoClickers();
-            this.resetProgressBar();
-        }
+        // Unlock new auto-clickers starting from the fourth one
+        this.unlockNextAutoClicker();
     }
 
     updateProgress() {
@@ -62,14 +115,12 @@ class AutoClickerManager {
         this.progressBar.style.width = Math.min(progressPercentage, 100) + '%';
     }
 
-    unlockAllNewAutoClickers() {
+    unlockNextAutoClicker() {
+        // Select hidden auto-clickers starting from the fourth
         const hiddenAutoClickers = document.querySelectorAll('.auto-clicker-item.hidden');
-        hiddenAutoClickers.forEach((autoClicker, index) => {
-            // Show the first 3 hidden auto-clickers in the list
-            if (index < 3) {
-                autoClicker.classList.remove('hidden');
-            }
-        });
+        if (hiddenAutoClickers.length > 0) {
+            hiddenAutoClickers[0].classList.remove('hidden');  // Reveal the next hidden auto-clicker
+        }
     }
 
     resetProgressBar() {
@@ -77,10 +128,15 @@ class AutoClickerManager {
     }
 }
 
-// Initialize Clicker game and other managers
+
+// Instantiate the Clicker class
 let clicker1 = new Clicker(0);
 
-// Event listeners for cookie clicking
+// Instantiate the AutoClickerManager and UpgradeManager
+const autoClickerManager = new AutoClickerManager();
+const upgradeManager = new UpgradeManager();
+
+// Cookie clicker
 const cookie = document.getElementById('cookie');
 cookie.addEventListener('click', () => {
     clicker1.click();
@@ -126,7 +182,12 @@ const megaClickerButton = document.getElementById('mega-clicker');
 const rareClickerButton = document.getElementById('rare-clicker');
 const legendaryClickerButton = document.getElementById('legendary-clicker');
 const mythicalClickerButton = document.getElementById('mythical-clicker');
+const ultraClickerButton = document.getElementById('ultra-clicker'); // New auto-clicker
+const supremeClickerButton = document.getElementById('supreme-clicker'); // New auto-clicker
+const godlyClickerButton = document.getElementById('godly-clicker'); // New auto-clicker
+const ultimateClickerButton = document.getElementById('ultimate-clicker'); // New auto-clicker
 
+// Event listeners for auto-clickers
 autoClickerButton.addEventListener('click', () => {
     clicker1.purchaseAutoClicker(750, 1, autoClickerButton);
 });
@@ -149,4 +210,20 @@ legendaryClickerButton.addEventListener('click', () => {
 
 mythicalClickerButton.addEventListener('click', () => {
     clicker1.purchaseAutoClicker(6000000, 200, mythicalClickerButton);
+});
+
+ultraClickerButton.addEventListener('click', () => {
+    clicker1.purchaseAutoClicker(10000000, 400, ultraClickerButton); // New auto-clicker
+});
+
+supremeClickerButton.addEventListener('click', () => {
+    clicker1.purchaseAutoClicker(25000000, 800, supremeClickerButton); // New auto-clicker
+});
+
+godlyClickerButton.addEventListener('click', () => {
+    clicker1.purchaseAutoClicker(50000000, 1600, godlyClickerButton); // New auto-clicker
+});
+
+ultimateClickerButton.addEventListener('click', () => {
+    clicker1.purchaseAutoClicker(100000000, 3200, ultimateClickerButton); // New auto-clicker
 });
