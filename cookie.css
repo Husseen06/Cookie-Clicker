@@ -122,3 +122,30 @@ body {
 #cookie:active {
     transform: scale(0.9);
 }
+
+#floating-text {
+    position: absolute;
+    top: 50%;
+    left: 70%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    pointer-events: none;
+    opacity: 0; /* Initially hidden */
+}
+
+@keyframes float {
+    0% {
+        transform: translate(-50%, -50%);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -150%);
+        opacity: 0;
+    }
+}
+
+.show {
+    animation: float 1s ease-out forwards; /* Floating and fading animation */
+}
