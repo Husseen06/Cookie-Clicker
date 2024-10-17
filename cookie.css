@@ -125,7 +125,7 @@ body {
 
 #floating-text {
     position: absolute;
-    top: 50%;
+    top: 30%;
     left: 70%;
     transform: translate(-50%, -50%);
     font-size: 24px;
