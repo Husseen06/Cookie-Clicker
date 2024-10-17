@@ -7,7 +7,7 @@
     box-sizing: border-box;
     color: #4E342E;
 }
-
+ 
 body {
     display: flex;
     justify-content: center;
@@ -16,7 +16,7 @@ body {
     background-color: #f3d294;
     text-align: center;
 }
-
+ 
 .container {
     display: flex;
     flex-direction: row;
@@ -24,18 +24,25 @@ body {
     align-items: center;
     width: 100%;
     max-width: 1000px;
-    padding: 20px;
 }
-
+.active-items {
+    position: relative;
+    top: 280px;
+    left:450px;
+    width: 400px;
+    background-color: #7f5945f5;
+    border-radius: 15px;
+}
+ 
 .auto-clickers, .upgrades {
     background-color:#7f5945f5;
     border-radius: 15px;
     padding: 20px;
-    width: 250px;
+    width: 450px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
     position: relative;
 }
-
+ 
 .auto-clicker-item, .upgrade-item {
     background-color: #fee6bab4;
     margin: 10px 0;
@@ -46,22 +53,22 @@ body {
     transition: background-color 0.3s ease, transform 0.2s ease;
     border: none;
 }
-
+ 
 .auto-clicker-item:hover, .upgrade-item:hover {
     background-color: #ccc;
     transform: translateY(-3px);
 }
-
+ 
 .auto-clicker-item:active, .upgrade-item:active {
     transform: scale(0.95);
 }
-
-
+ 
+ 
 .progress-bar-container {
     text-align: center;
     margin-top: 20px;
 }
-
+ 
 .progress-bar {
     width: 100%;
     background-color: #ddd;
@@ -70,33 +77,33 @@ body {
     overflow: hidden;
     margin: 10px 0;
 }
-
+ 
 .progress {
     background-color: #4caf50;
     height: 100%;
     width: 0;
     transition: width 0.3s ease;
 }
-
+ 
 #active-upgrades, #active-auto-clickers {
     font-weight: bold;
 }
-
+ 
 .hidden{
     display: none;
 }
-
+ 
 #cookie {
-    width: 20vw; 
-    height: auto; 
+    width: 20vw;
+    height: auto;
     cursor: pointer;
     transition: transform 0.2s ease;
 }
-
+ 
 #cookie:active {
     transform: scale(0.95);
 }
-
+ 
 #cookie-section {
     background-color: #7f5945f5;
     border-radius: 15px;
@@ -122,7 +129,7 @@ body {
 #cookie:active {
     transform: scale(0.9);
 }
-
+ 
 #floating-text {
     position: absolute;
     top: 30%;
@@ -134,7 +141,7 @@ body {
     pointer-events: none;
     opacity: 0; /* Initially hidden */
 }
-
+ 
 @keyframes float {
     0% {
         transform: translate(-50%, -50%);
@@ -145,7 +152,7 @@ body {
         opacity: 0;
     }
 }
-
+ 
 .show {
     animation: float 1s ease-out forwards; /* Floating and fading animation */
 }

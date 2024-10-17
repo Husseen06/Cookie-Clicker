@@ -63,20 +63,20 @@ class Clicker {
     }
 }
 
-
 // UpgradeManager to handle upgrades progress bar
 class UpgradeManager {
     constructor() {
         this.activeUpgrades = 0;
         this.activeUpgradesSpan = document.getElementById('active-upgrades');
         this.progressBar = document.getElementById('upgrade-progress');
+        this.activeUpgradesList = document.getElementById('active-upgrades-list');
     }
 
     handleUpgrade() {
         this.activeUpgrades++;
         this.updateProgress();
 
-        // Reveal the next hidden upgrade immediately after each purchase
+        // Unlock the next hidden upgrade immediately after each purchase
         this.unlockNextUpgrade();
     }
 
@@ -85,6 +85,7 @@ class UpgradeManager {
         const upgradesInCurrentRound = this.activeUpgrades % 3;
         const progressPercentage = (upgradesInCurrentRound / 3) * 100;
         this.progressBar.style.width = Math.min(progressPercentage, 100) + '%';
+        this.updateActiveUpgradesDisplay();
     }
 
     unlockNextUpgrade() {
@@ -95,12 +96,19 @@ class UpgradeManager {
         }
     }
 
+    updateActiveUpgradesDisplay() {
+        if (this.activeUpgrades === 0) {
+            this.activeUpgradesList.textContent = 'Active Upgrades: None';
+        } else {
+            this.activeUpgradesList.textContent = 'Active Upgrades: ' + this.activeUpgrades;
+        }
+    }
+
     resetProgressBar() {
         this.progressBar.style.width = '0%';
     }
 }
 
-// AutoClickerManager to handle auto-clicker progress bar
 // AutoClickerManager to handle auto-clicker progress bar
 class AutoClickerManager {
     constructor() {
@@ -135,7 +143,6 @@ class AutoClickerManager {
         this.progressBar.style.width = '0%';
     }
 }
-
 
 // Instantiate the Clicker class
 let clicker1 = new Clicker(0);
@@ -193,7 +200,6 @@ const mythicalClickerButton = document.getElementById('mythical-clicker');
 const ultraClickerButton = document.getElementById('ultra-clicker'); // New auto-clicker
 const supremeClickerButton = document.getElementById('supreme-clicker'); // New auto-clicker
 const godlyClickerButton = document.getElementById('godly-clicker'); // New auto-clicker
-const ultimateClickerButton = document.getElementById('ultimate-clicker'); // New auto-clicker
 
 // Event listeners for auto-clickers
 autoClickerButton.addEventListener('click', () => {
