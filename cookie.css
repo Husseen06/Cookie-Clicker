@@ -7,7 +7,7 @@
     box-sizing: border-box;
     color: #4E342E;
 }
- 
+
 body {
     display: flex;
     justify-content: center;
@@ -16,7 +16,7 @@ body {
     background-color: #f3d294;
     text-align: center;
 }
- 
+
 .container {
     display: flex;
     flex-direction: row;
@@ -25,15 +25,18 @@ body {
     width: 100%;
     max-width: 1000px;
 }
+
 .active-items {
     position: relative;
     top: 280px;
     left:450px;
     width: 400px;
+    max-height: 600px;
     background-color: #7f5945f5;
     border-radius: 15px;
+    padding: 10px;
 }
- 
+
 .auto-clickers, .upgrades {
     background-color:#7f5945f5;
     border-radius: 15px;
@@ -44,7 +47,7 @@ body {
     left: -100px;
     margin: 30px;
 }
- 
+
 .auto-clicker-item, .upgrade-item {
     background-color: #fee6bab4;
     margin: 10px 0;
@@ -55,57 +58,35 @@ body {
     transition: background-color 0.3s ease, transform 0.2s ease;
     border: none;
 }
- 
+
 .auto-clicker-item:hover, .upgrade-item:hover {
     background-color: #ccc;
     transform: translateY(-3px);
 }
- 
+
 .auto-clicker-item:active, .upgrade-item:active {
     transform: scale(0.95);
 }
- 
- 
-.progress-bar-container {
-    text-align: center;
-    margin-top: 20px;
-}
- 
-.progress-bar {
-    width: 100%;
-    background-color: #ddd;
-    border-radius: 20px;
-    height: 20px;
-    overflow: hidden;
-    margin: 10px 0;
-}
- 
-.progress {
-    background-color: #4caf50;
-    height: 100%;
-    width: 0;
-    transition: width 0.3s ease;
-}
- 
+
 #active-upgrades, #active-auto-clickers {
     font-weight: bold;
 }
- 
-.hidden{
+
+.hidden {
     display: none;
 }
- 
+
 #cookie {
     width: 20vw;
     height: auto;
     cursor: pointer;
     transition: transform 0.2s ease;
 }
- 
+
 #cookie:active {
     transform: scale(0.95);
 }
- 
+
 #cookie-section {
     background-color: #7f5945f5;
     border-radius: 15px;
@@ -115,24 +96,24 @@ body {
     top: 0px;
     left: -100px;
 }
- 
+
 #cookie-container {
     margin: 20px 0;
     background-color: #fee6bab4;
     border-radius: 50%;
     padding: 20px;
 }
- 
+
 #cookie {
     width: 200px;
     cursor: pointer;
     transition: transform 0.2s ease-in-out;
 }
- 
+
 #cookie:active {
     transform: scale(0.9);
 }
- 
+
 #floating-text {
     position: absolute;
     top: 30%;
@@ -144,7 +125,7 @@ body {
     pointer-events: none;
     opacity: 0; /* Initially hidden */
 }
- 
+
 @keyframes float {
     0% {
         transform: translate(-50%, -50%);
@@ -155,7 +136,7 @@ body {
         opacity: 0;
     }
 }
- 
+
 .show {
     animation: float 1s ease-out forwards; /* Floating and fading animation */
 }
