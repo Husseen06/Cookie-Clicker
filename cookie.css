@@ -50,12 +50,17 @@ body {
 
 .auto-clickers {
     position: relative;
-    left: 400px;
+    left: 600px;
+    top: 170px;
+    height: 45vh;
+        
 }
 
 .upgrades {
     position: relative;
-    left: 200px;
+    left: 90px;
+    top: -190px;
+    height: 45vh;
 }
 
 .auto-clickers,
@@ -64,8 +69,7 @@ body {
     border-radius: 15px;
     margin: 10px 0;
     padding: 20px 10px;
-    width: 450vw;
-    height: 55vh;
+    width: 600vw;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
 }
 
@@ -74,12 +78,13 @@ body {
     background-color: #fee6bab4;
     margin: 10px 0;
     border-radius: 10px;
-    padding: 20px 10px;
-    font-size: 18px;
+    padding: 15px;
+    font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
     border: none;
-}
+    height: 9.8vh;
+}   
 
 .auto-clicker-item:hover,
 .upgrade-item:hover {
