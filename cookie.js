@@ -19,17 +19,15 @@ class Clicker {
             cookieCountElement.textContent = this.count;
         }
     }
-
     animateGainedCookies() {
         const floatingText = document.getElementById('floating-text');
         if (floatingText) {
-            floatingText.textContent = '+${this.cookiesPerClick}';
+            floatingText.textContent = `+${this.cookiesPerClick}`;
             floatingText.classList.remove('show');
             void floatingText.offsetWidth;  // Trigger reflow for animation reset
             floatingText.classList.add('show');
         }
     }
-
     // Purchase upgrade and reveal the next one if applicable
     purchaseUpgrade(cost, multiplier, buttonElement, upgradeName, nextUpgradeId = null) {
         if (this.count >= cost) {
