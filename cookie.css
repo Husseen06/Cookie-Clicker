@@ -50,7 +50,7 @@ body {
 
 .auto-clickers {
     position: relative;
-    left: 600px;
+    left: 720px;
     top: 170px;
     height: 45vh;
         
@@ -79,11 +79,12 @@ body {
     margin: 10px 0;
     border-radius: 10px;
     padding: 15px;
-    font-size: 16px;
+    font-size: 18px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
     border: none;
-    height: 9.8vh;
+    height: 9vh;
+    width: 20vw;
 }   
 
 .auto-clicker-item:hover,
