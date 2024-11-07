@@ -1,7 +1,7 @@
 class Clicker {
     constructor(start) {
         this.count = start;
-        this.cookiesPerClick = 10000;  // Set default click to 10,000 for testing
+        this.cookiesPerClick = 10000;
         this.autoClickRate = 0;
         this.displayCount();
         this.startAutoClickers();
@@ -13,31 +13,40 @@ class Clicker {
         this.animateGainedCookies();
     }
 
+    formatCookies(number) {
+        if (number >= 1e15) return (number / 1e15).toFixed(1) + "Q";
+        if (number >= 1e12) return (number / 1e12).toFixed(1) + "T";
+        if (number >= 1e9) return (number / 1e9).toFixed(1) + "B";
+        if (number >= 1e6) return (number / 1e6).toFixed(1) + "M";
+        if (number >= 1e3) return (number / 1e3).toFixed(1) + "K";
+        return number.toString();
+    }
+
     displayCount() {
         const cookieCountElement = document.getElementById('cookie-count');
         if (cookieCountElement) {
-            cookieCountElement.textContent = this.count;
+            cookieCountElement.textContent = " " + this.formatCookies(this.count);
         }
     }
+
     animateGainedCookies() {
         const floatingText = document.getElementById('floating-text');
         if (floatingText) {
-            floatingText.textContent = `+${this.cookiesPerClick}`;
+            floatingText.textContent = `+${this.formatCookies(this.cookiesPerClick)}`;
             floatingText.classList.remove('show');
-            void floatingText.offsetWidth;  // Trigger reflow for animation reset
+            void floatingText.offsetWidth;
             floatingText.classList.add('show');
         }
     }
-    // Purchase upgrade and reveal the next one if applicable
+
     purchaseUpgrade(cost, multiplier, buttonElement, upgradeName, nextUpgradeId = null) {
         if (this.count >= cost) {
             this.count -= cost;
             this.cookiesPerClick *= multiplier;
-            buttonElement.style.display = 'none';  // Hide purchased upgrade
+            buttonElement.style.display = 'none';
             this.displayCount();
-            upgradeManager.handleUpgrade(upgradeName); // Track active upgrades
+            upgradeManager.handleUpgrade(upgradeName);
 
-            // Reveal the next upgrade if there is one
             if (nextUpgradeId) {
                 const nextUpgrade = document.getElementById(nextUpgradeId);
                 if (nextUpgrade) {
@@ -45,20 +54,18 @@ class Clicker {
                 }
             }
         } else {
-            alert("Not enough cookies!");
+            alert("Niet genoeg cookies!");
         }
     }
 
-    // Purchase auto-clicker and reveal the next one if applicable
     purchaseAutoClicker(cost, rate, buttonElement, autoClickerName, nextAutoClickerId = null) {
         if (this.count >= cost) {
             this.count -= cost;
             this.autoClickRate += rate;
-            buttonElement.style.display = 'none';  // Hide purchased auto-clicker
+            buttonElement.style.display = 'none';
             this.displayCount();
-            upgradeManager.handleUpgrade(autoClickerName); // Track active auto-clickers
+            upgradeManager.handleUpgrade(autoClickerName);
 
-            // Reveal the next auto-clicker if there is one
             if (nextAutoClickerId) {
                 const nextAutoClicker = document.getElementById(nextAutoClickerId);
                 if (nextAutoClicker) {
@@ -66,7 +73,7 @@ class Clicker {
                 }
             }
         } else {
-            alert("Not enough cookies!");
+            alert("Niet genoeg cookies!");
         }
     }
 
@@ -96,16 +103,13 @@ class UpgradeManager {
     }
 }
 
-// Create instances
 const clicker = new Clicker(0);
 const upgradeManager = new UpgradeManager();
 
-// Handle clicks on the cookie
 document.getElementById('cookie').addEventListener('click', () => {
     clicker.click();
 });
 
-// Handle upgrades purchase
 document.querySelectorAll('.upgrade-item').forEach((button, index) => {
     const upgradeDetails = [
         { cost: 50, multiplier: 2, name: 'Double Clicker', nextUpgradeId: 'quintuple-clicker' },
@@ -113,7 +117,7 @@ document.querySelectorAll('.upgrade-item').forEach((button, index) => {
         { cost: 750, multiplier: 4, name: 'Quadruple Clicker', nextUpgradeId: 'septuple-clicker' },
         { cost: 1500, multiplier: 5, name: 'Quintuple Clicker', nextUpgradeId: 'sextuple-clicker' },
         { cost: 5000, multiplier: 6, name: 'Sextuple Clicker', nextUpgradeId: 'septuple-clicker' },
-        { cost: 12000, multiplier: 7, name: 'Septuple Clicker', nextUpgradeId: null } // No more after Septuple
+        { cost: 12000, multiplier: 7, name: 'Septuple Clicker', nextUpgradeId: null }
     ];
 
     const upgrade = upgradeDetails[index];
@@ -122,18 +126,17 @@ document.querySelectorAll('.upgrade-item').forEach((button, index) => {
     });
 });
 
-// Handle auto-clickers purchase
 document.querySelectorAll('.auto-clicker-item').forEach((button, index) => {
     const autoClickerDetails = [
-        { cost: 750, rate: 1, name: 'Auto Clicker', nextAutoClickerId: 'super-clicker' },
-        { cost: 5000, rate: 2, name: 'Super Clicker', nextAutoClickerId: 'mega-clicker' },
-        { cost: 10000, rate: 5, name: 'Mega Clicker', nextAutoClickerId: 'rare-clicker' },
-        { cost: 500000, rate: 10, name: 'Rare Clicker', nextAutoClickerId: 'legendary-clicker' },
-        { cost: 2500000, rate: 25, name: 'Legendary Clicker', nextAutoClickerId: 'mythical-clicker' },
-        { cost: 6000000, rate: 50, name: 'Mythical Clicker', nextAutoClickerId: 'ultra-clicker' },
-        { cost: 10000000, rate: 100, name: 'Ultra Clicker', nextAutoClickerId: 'supreme-clicker' },
-        { cost: 25000000, rate: 200, name: 'Supreme Clicker', nextAutoClickerId: 'godly-clicker' },
-        { cost: 50000000, rate: 500, name: 'Godly Clicker', nextAutoClickerId: null } // No more after Godly
+        { cost: 750, rate: 1, name: 'Auto Clicker', nextAutoClickerId: 'rare-clicker' },
+        { cost: 5000, rate: 2, name: 'Super Clicker', nextAutoClickerId: 'legendary-clicker' },
+        { cost: 10000, rate: 5, name: 'Mega Clicker', nextAutoClickerId: 'mythical-clicker' },
+        { cost: 500000, rate: 10, name: 'Rare Clicker', nextAutoClickerId: 'ultra-clicker' },
+        { cost: 2500000, rate: 25, name: 'Legendary Clicker', nextAutoClickerId: 'supreme-clicker' },
+        { cost: 6000000, rate: 50, name: 'Mythical Clicker', nextAutoClickerId: 'godly-clicker' },
+        { cost: 10000000, rate: 100, name: 'Ultra Clicker', nextAutoClickerId: null },
+        { cost: 25000000, rate: 200, name: 'Supreme Clicker', nextAutoClickerId: null },
+        { cost: 50000000, rate: 500, name: 'Godly Clicker', nextAutoClickerId: null }
     ];
 
     const autoClicker = autoClickerDetails[index];
