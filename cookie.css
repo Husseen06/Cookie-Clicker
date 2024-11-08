@@ -177,11 +177,10 @@ h3 {
 }
 /* Inverted theme styles */
 .inverted-theme {
-    background-color: #fee6bab4;
-    color: #4E342E;
-}
+    background-color: rgb(244, 213, 147)
+ }
 
-.inverted-theme .container, 
+ 
 .inverted-theme .auto-clickers, 
 .inverted-theme .upgrades, 
 .inverted-theme .active-items, 

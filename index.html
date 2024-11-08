@@ -52,11 +52,21 @@
 
     <script src="cookie.js"></script>
     <script>
-        // Theme toggle functionality
-        const themeToggleButton = document.getElementById('theme-toggle');
-        themeToggleButton.addEventListener('click', () => {
-            document.body.classList.toggle('inverted-theme');
-        });
+       const themeToggleButton = document.getElementById('theme-toggle');
+const cookieImage = document.getElementById('cookie');
+
+themeToggleButton.addEventListener('click', () => {
+    // Toggle the inverted theme on the body
+    document.body.classList.toggle('inverted-theme');
+
+    // Change the cookie image based on the theme
+    if (document.body.classList.contains('inverted-theme')) {
+        cookieImage.src = "wit koekje.png"; // Dark mode image
+    } else {
+        cookieImage.src = "koekje.png"; // Light mode image
+    }
+});
+
     </script>
 </body>
 </html>
