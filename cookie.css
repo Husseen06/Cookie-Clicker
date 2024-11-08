@@ -15,6 +15,7 @@ body {
     height: 100vh;
     background-color: #f3d294;
     text-align: center;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .container {
@@ -25,6 +26,7 @@ body {
     width: 80vw;
 }
 
+/* Active Items Section */
 .active-items {
     position: absolute;
     top: 25px;
@@ -37,6 +39,7 @@ body {
     padding: 20px 10px;
     margin: 10px 0;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s;
 }
 
 .active-items h4 {
@@ -45,31 +48,30 @@ body {
     font-size: 1.5em;
 }
 
+/* Auto Clickers Section */
 .auto-clickers {
     position: relative;
     left: 870px;
-    top: 170px;        
+    top: 170px;
 }
 
 .upgrades {
     position: relative;
     left: 35px;
     top: -180px;
-    
 }
 
-.auto-clickers,
-.upgrades {
+.auto-clickers, .upgrades {
     background-color: #7f5945f5;
     border-radius: 15px;
     margin: 10px 0;
     padding: 15px 10px;
     width: 600vw;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s;
 }
 
-.auto-clicker-item,
-.upgrade-item {
+.auto-clicker-item, .upgrade-item {
     background-color: #fee6bab4;
     margin: 10px 0;
     border-radius: 10px;
@@ -79,12 +81,14 @@ body {
     border: none;
     height: 9vh;
     width: 20vw;
-}   
+    transition: background-color 0.3s, color 0.3s;
+}
 
 .hidden {
     display: none;
 }
 
+/* Cookie Section */
 #cookie-section {
     background-color: #7f5945f5;
     border-radius: 15px;
@@ -95,6 +99,7 @@ body {
     left: -450px;
     height: 90vh;
     width: 100vw;
+    transition: background-color 0.3s;
 }
 
 #cookie-count {
@@ -110,6 +115,7 @@ p {
     background-color: #fee6bab4;
     border-radius: 50%;
     padding: 20px;
+    transition: background-color 0.3s;
 }
 
 #cookie {
@@ -156,4 +162,50 @@ h2, h4, p {
 
 h3 {
     font-size: 1.5em;
+}
+.theme-toggle {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #fee6bab4;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 12px;
+    cursor: pointer;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+}
+/* Inverted theme styles */
+.inverted-theme {
+    background-color: #fee6bab4;
+    color: #4E342E;
+}
+
+.inverted-theme .container, 
+.inverted-theme .auto-clickers, 
+.inverted-theme .upgrades, 
+.inverted-theme .active-items, 
+.inverted-theme #cookie-section {
+    background-color: #fee6bab4;
+    color: #4E342E;
+}
+
+.inverted-theme .auto-clicker-item,
+.inverted-theme .upgrade-item,
+.inverted-theme #cookie-container { 
+    background-color: #4E342E;
+    color: #fee6bab4;
+}
+
+.inverted-theme h2, .inverted-theme h4, .inverted-theme p {
+    color: #4E342E;
+}
+
+.inverted-theme .theme-toggle {
+    background-color: #4E342E;
+    color: #fee6bab4;
+}
+
+.inverted-theme #cookie-count {
+    color: #4E342E;
 }

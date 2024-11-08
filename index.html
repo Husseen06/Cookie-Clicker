@@ -7,9 +7,11 @@
     <link rel="stylesheet" href="cookie.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
+   
+    <button id="theme-toggle" class="theme-toggle">Toggle Theme</button>
     <div class="container">
         <div class="active-items">
             <h3>Active Items</h3>
@@ -27,7 +29,6 @@
             <button class="auto-clicker-item hidden" id="ultra-clicker">Ultra Clicker 10000000 Cookies</button>
             <button class="auto-clicker-item hidden" id="supreme-clicker">Supreme Clicker 25000000 Cookies</button>
             <button class="auto-clicker-item hidden" id="godly-clicker">Godly Clicker 50000000 Cookies</button>
-
         </div>
 
         <div id="cookie-section">
@@ -47,7 +48,15 @@
             <button class="upgrade-item hidden" id="sextuple-clicker">Sextuple Clicker 5000 Cookies</button>
             <button class="upgrade-item hidden" id="septuple-clicker">Septuple Clicker 12000 Cookies</button>
         </div>
-</div>
+    </div>
+
     <script src="cookie.js"></script>
+    <script>
+        // Theme toggle functionality
+        const themeToggleButton = document.getElementById('theme-toggle');
+        themeToggleButton.addEventListener('click', () => {
+            document.body.classList.toggle('inverted-theme');
+        });
+    </script>
 </body>
 </html>

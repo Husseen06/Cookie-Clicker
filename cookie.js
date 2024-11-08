@@ -144,3 +144,4 @@ document.querySelectorAll('.auto-clicker-item').forEach((button, index) => {
         clicker.purchaseAutoClicker(autoClicker.cost, autoClicker.rate, button, autoClicker.name, autoClicker.nextAutoClickerId);
     });
 });
+
