@@ -1,7 +1,7 @@
 class Clicker {
     constructor(start) {
         this.count = start;
-        this.cookiesPerClick = 10000;
+        this.cookiesPerClick = 1;
         this.autoClickRate = 0;
         this.displayCount();
         this.startAutoClickers();

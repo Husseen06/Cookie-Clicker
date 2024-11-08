@@ -5,7 +5,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    color: #4E342E;
+    color: #4e342ef8;
 }
 
 body {
@@ -177,11 +177,17 @@ h3 {
 }
 /* Inverted theme styles */
 .inverted-theme {
+    
     background-color: #4E342E;
     color: #4E342E;
 }
 
-.inverted-theme 
+.inverted-theme {
+    background-color: rgb(244, 213, 147)
+ }
+
+ 
+
 .inverted-theme .auto-clickers, 
 .inverted-theme .upgrades, 
 .inverted-theme .active-items, 
