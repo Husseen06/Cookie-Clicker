@@ -82,7 +82,7 @@ class Clicker {
                 }
             }
         } else {
-            alert("Niet genoeg cookies!"); // Toon een waarschuwing als er niet genoeg cookies zijn
+            alert("Not enough cookies!"); // Toon een waarschuwing als er niet genoeg cookies zijn
         }
     }
 

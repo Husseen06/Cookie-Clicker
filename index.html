@@ -56,14 +56,14 @@
 const cookieImage = document.getElementById('cookie');
 
 themeToggleButton.addEventListener('click', () => {
-    // Toggle the inverted theme on the body
+    
     document.body.classList.toggle('inverted-theme');
 
-    // Change the cookie image based on the theme
+  
     if (document.body.classList.contains('inverted-theme')) {
-        cookieImage.src = "wit koekje.png"; // Dark mode image
+        cookieImage.src = "wit koekje.png"; 
     } else {
-        cookieImage.src = "koekje.png"; // Light mode image
+        cookieImage.src = "koekje.png"; 
     }
 });
 
